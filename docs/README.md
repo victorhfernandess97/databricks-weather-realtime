@@ -43,7 +43,6 @@ Exemplo de elementos que devem aparecer no diagrama:
 - GitHub  
 
 
-![Diagrama da Arquitetura](docs/diagrama_arquitetura.png)
 ![Diagrama da Arquitetura](/Workspace/Repos/dataeng.victor@outlook.com/databricks-weather-realtime/docs/diagrama_arquitetura.png)
 
 
@@ -82,7 +81,7 @@ API → Notebook de Ingestão (Streaming)
             Gold Layer
 ```
 
-![Diagrama da Arquitetura](docs/dag.png)
+![Diagrama da Arquitetura](/Workspace/Repos/dataeng.victor@outlook.com/databricks-weather-realtime/docs/dag.png)
 
 ---
 
@@ -126,7 +125,7 @@ As tarefas foram configuradas em um job com execução sequencial:
 
 Agendamento recomendado: **a cada 5 minutos**
 
-![Configuração do Job](docs/databricks_job_config.png)
+![Configuração do Job](/Workspace/Repos/dataeng.victor@outlook.com/databricks-weather-realtime/docs/databricks_job_config.png)
 
 ---
 
@@ -141,10 +140,10 @@ A organização do Data Lake segue a Arquitetura Medalhão, com **um único cont
 - `managed` – pastas de controle geradas automaticamente pelo Unity Catalog (quando aplicável)
 
 **Overview do Storage Account:**  
-![Storage Account Overview](docs/storage_account_config.png)
+![Storage Account Overview](/Workspace/Repos/dataeng.victor@outlook.com/databricks-weather-realtime/docs/storage_account.png)
 
 **Estrutura do container `datalake`:**  
-![Containers ADLS](docs/storage_containers.png)
+![Containers ADLS](/Workspace/Repos/dataeng.victor@outlook.com/databricks-weather-realtime/docs/storage_containers.png)
 
 ### 7.2 Access Connector + RBAC  
 - Criado em Azure  
