@@ -81,7 +81,7 @@ API → Notebook de Ingestão (Streaming)
             Gold Layer
 ```
 
-![Diagrama da Arquitetura](/Workspace/Repos/dataeng.victor@outlook.com/databricks-weather-realtime/docs/dag.png)
+![Diagrama da Arquitetura](docs/diagrama_arquitetura.png)
 
 ---
 
