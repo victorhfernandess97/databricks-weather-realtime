@@ -44,7 +44,7 @@ Exemplo de elementos que devem aparecer no diagrama:
 
 
 ![Diagrama da Arquitetura](docs/diagrama_arquitetura.png)
-
+![Diagrama da Arquitetura](/Workspace/Repos/dataeng.victor@outlook.com/databricks-weather-realtime/docs/diagrama_arquitetura.png)
 
 
 
