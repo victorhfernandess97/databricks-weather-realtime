@@ -45,6 +45,7 @@ Exemplo de elementos que devem aparecer no diagrama:
 ```
 ![Diagrama da Arquitetura](docs/diagrama_arquitetura.png)
 
+
 ```
 
 ---
@@ -83,6 +84,8 @@ API → Notebook de Ingestão (Streaming)
 
 ```
 [INSERIR IMAGEM: pipeline_dag.png]
+<img width="2494" height="934" alt="image" src="https://github.com/user-attachments/assets/f10aa4d5-8d57-429f-911b-8a4d8de9b596" />
+
 ```
 
 ---
