@@ -42,11 +42,11 @@ Exemplo de elementos que devem aparecer no diagrama:
 - Databricks Jobs  
 - GitHub  
 
-```
+
 ![Diagrama da Arquitetura](docs/diagrama_arquitetura.png)
 
 
-```
+
 
 ---
 
@@ -82,11 +82,7 @@ API → Notebook de Ingestão (Streaming)
             Gold Layer
 ```
 
-```
-[INSERIR IMAGEM: pipeline_dag.png]
-<img width="2494" height="934" alt="image" src="https://github.com/user-attachments/assets/f10aa4d5-8d57-429f-911b-8a4d8de9b596" />
-
-```
+![Diagrama da Arquitetura](docs/dag.png)
 
 ---
 
@@ -130,26 +126,25 @@ As tarefas foram configuradas em um job com execução sequencial:
 
 Agendamento recomendado: **a cada 5 minutos**
 
-```
-[INSERIR IMAGEM: databricks_jobs_config.png]
-```
+![Configuração do Job](docs/databricks_job_config.png)
 
 ---
 
 ## 7. Infraestrutura no Azure  
 
 ### 7.1 Storage Account (ADLS)  
-Configurações necessárias:
+A organização do Data Lake segue a Arquitetura Medalhão, com **um único container** chamado `datalake`, contendo as pastas:
 
-- Hierarchical Namespace = Enabled  
-- Containers:
-  - `raw`
-  - `curated`
-- Permissões do Access Connector (Storage Blob Data Contributor)
+- `bronze` – ingestão bruta  
+- `silver` – dados limpos e normalizados  
+- `gold` – tabelas analíticas  
+- `managed` – pastas de controle geradas automaticamente pelo Unity Catalog (quando aplicável)
 
-```
-[INSERIR IMAGEM: storage_account_config.png]
-```
+**Overview do Storage Account:**  
+![Storage Account Overview](docs/storage_account_config.png)
+
+**Estrutura do container `datalake`:**  
+![Containers ADLS](docs/storage_containers.png)
 
 ### 7.2 Access Connector + RBAC  
 - Criado em Azure  
@@ -263,4 +258,3 @@ Integração feita por **Personal Access Token**.
 ## 14. Autor  
 Projeto desenvolvido para fins educacionais e portfólio de Engenharia de Dados, seguindo práticas baseadas em Databricks, Azure e Apache Spark.
 
-![diagrama_arquitetura.png](./diagrama_arquitetura.png "diagrama_arquitetura.png")
