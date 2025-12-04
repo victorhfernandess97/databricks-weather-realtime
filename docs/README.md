@@ -43,7 +43,7 @@ Exemplo de elementos que devem aparecer no diagrama:
 - GitHub  
 
 
-![Diagrama da Arquitetura](/Workspace/Repos/dataeng.victor@outlook.com/databricks-weather-realtime/docs/diagrama_arquitetura.png)
+![Diagrama da Arquitetura](docs/diagrama_arquitetura.png)
 
 
 
