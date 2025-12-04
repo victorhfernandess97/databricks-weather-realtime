@@ -150,30 +150,52 @@ A organização do Data Lake segue a Arquitetura Medalhão, com **um único cont
 - Atribuição de roles no Storage Account  
 - Permissões herdadas pelo Databricks  
 
-```
-[INSERIR IMAGEM: access_connector_permissions.png]
-```
+![Access Connector Permissions](access_connector_permissions.png)
 
 ---
 
 ## 8. GitHub + Databricks Repos (Versionamento)  
 
-Estrutura do repositório:
+Este projeto utiliza **Databricks Repos** integrado ao **GitHub** através de um **Personal Access Token (PAT)**, permitindo versionamento completo, controle de branches, commits e sincronização automática entre o ambiente Databricks e o repositório remoto.
+
+A estrutura real do repositório é organizada da seguinte forma:
 
 ```
-/notebooks/bronze
-/notebooks/silver
-/notebooks/gold
-/infra/azure
-/docs/diagramas
-README.md
+├── 00.infra
+│   ├── 00.baixa_arquivo.ipynb
+│   ├── 00_setup_infra.ipynb
+│   └── 01.permissoes.ipynb
+│
+├── 01.config
+│   └── 00.global_config.ipynb
+│
+├── 02.bronze
+│   └── 01_bronze_autoloader.ipynb
+│
+├── 03.silver
+│   └── 01_silver_transform.ipynb
+│
+├── 04.gold
+│   ├── 01_gold_hourly_metrics.ipynb
+│   └── 02_gold_snapshot.ipynb
+│
+├── docs
+│   ├── dag.png
+│   ├── databricks_job_config.png
+│   ├── diagrama_arquitetura.png
+│   ├── storage_account.png
+│   └── storage_containers.png
+│
+├── .gitignore
+├── LICENSE
+└── README.md
 ```
 
-Integração feita por **Personal Access Token**.
+A imagem abaixo demonstra o repositório sincronizado corretamente dentro do **Databricks Repos**, exibindo a branch ativa (`main`) e as pastas versionadas:
 
-```
-[INSERIR IMAGEM: databricks_repos_integration.png]
-```
+
+![Integração GitHub + Databricks Repos](repos_1.png)
+![Integração GitHub + Databricks Repos](repos_2.png)
 
 ---
 
@@ -206,54 +228,40 @@ Integração feita por **Personal Access Token**.
 
 ---
 
-## 11. Como Executar o Projeto  
+## 11. Como Executar o Projeto
 
-1. Criar Databricks Workspace com Unity Catalog  
-2. Criar Storage Account com HNS ativado  
-3. Criar containers `raw` e `curated`  
-4. Configurar Access Connector  
-5. Conectar repositório ao Databricks Repos  
-6. Executar notebooks Bronze → Silver → Gold  
-7. Criar job para automação  
-
----
-
-## 12. Melhorias Futuras  
-
-- Migrar para **Delta Live Tables**  
-- Implementar monitoração com expectations  
-- Adicionar CI/CD com GitHub Actions  
-- Criar API ou dashboard conectado à camada Gold  
-
----
-
-## 13. Estrutura Final do Repositório
-
-```
-├── notebooks
-│   ├── bronze
-│   │   └── ingestao_bronze.py
-│   ├── silver
-│   │   └── transform_silver.py
-│   └── gold
-│       └── analytics_gold.py
-│
-├── infra
-│   └── azure
-│       └── configuracoes_terraform_opcional/
-│
-├── docs
-│   ├── diagrama_arquitetura_principal.png
-│   ├── pipeline_dag.png
-│   ├── storage_account_config.png
-│   ├── access_connector_permissions.png
-│   └── databricks_jobs_config.png
-│
-└── README.md
-```
+1. Criar o **Azure Databricks Workspace** com Unity Catalog habilitado.  
+2. Criar o **Azure Data Lake Storage Gen2 (ADLS)** com *Hierarchical Namespace (HNS)* ativado.  
+3. Criar o container `datalake` contendo as pastas:
+   - `bronze`
+   - `silver`
+   - `gold`
+   - `managed`
+4. Criar o **Access Connector for Azure Databricks**.
+5. Atribuir a role **Storage Blob Data Contributor** ao Access Connector no Storage Account.
+6. Conectar o repositório GitHub ao **Databricks Repos**.
+7. Configurar os notebooks e executar o pipeline:
+   - `02.bronze/01_bronze_autoloader.ipynb`
+   - `03.silver/01_silver_transform.ipynb`
+   - `04.gold/01_gold_hourly_metrics.ipynb`
+   - `04.gold/02_gold_snapshot.ipynb`
+8. Criar um **Databricks Job** e orquestrar a execução Bronze → Silver → Gold.
+9. Definir um agendamento (recomendado: a cada 5 minutos).
 
 ---
 
-## 14. Autor  
+## 12. Melhorias Futuras
+
+- Migrar o pipeline para **Delta Live Tables**.  
+- Adicionar monitoração de qualidade com **Expectations / Quality Gates**.  
+- Implementar **CI/CD com GitHub Actions** para deploy automático das pipelines.  
+- Criar dashboards ou APIs consumindo a camada **Gold**.  
+- Adicionar testes automatizados para validação de schema e lógica de transformação.  
+
+
+---
+
+
+## 13. Autor  
 Projeto desenvolvido para fins educacionais e portfólio de Engenharia de Dados, seguindo práticas baseadas em Databricks, Azure e Apache Spark.
 
